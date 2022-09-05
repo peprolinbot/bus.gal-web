@@ -16,7 +16,7 @@
                 <td>{{ expedition.departure|date:'H:i' }}</td>
                 <td><button class="btn btn-outline-dark" data-bs-toggle="popover" data-bs-html="true" data-bs-title="Set as..." data-bs-content="<a href='{% url 'buses:index' %}?origin={{ expedition.destination.id }}' class='btn btn-primary'>Origin</a> <a href='{% url 'buses:index' %}?destination={{ expedition.destination.id }}' class='btn btn-primary'>Destination</a>">{{ expedition.destination.name }}</button></td>
                 <td>{{ expedition.arrival|date:'H:i' }}</td>
-                <td><a href="{{ expedition.url }}">Route</a></td>
+                <td><b>{{ expedition.code }}</b> - <a href="{{ expedition.url }}">{{ expedition.line.name }}</a></td>
             </tr>
             {% endfor %}
         </table>
