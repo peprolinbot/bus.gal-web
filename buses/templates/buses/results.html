@@ -12,9 +12,9 @@
             </tr>
             {% for expedition in expeditions %}
             <tr>
-                <td>{{ expedition.origin.name }}</td>
+                <td><button class="btn btn-outline-dark" data-bs-toggle="popover" data-bs-html="true" data-bs-title="Set as..." data-bs-content="<a href='{% url 'buses:index' %}?origin={{ expedition.origin.id }}' class='btn btn-primary'>Origin</a> <a href='{% url 'buses:index' %}?destination={{ expedition.origin.id }}' class='btn btn-primary'>Destination</a>">{{ expedition.origin.name }}</button></td>
                 <td>{{ expedition.departure|date:'H:i' }}</td>
-                <td>{{ expedition.destination.name }}</td>
+                <td><button class="btn btn-outline-dark" data-bs-toggle="popover" data-bs-html="true" data-bs-title="Set as..." data-bs-content="<a href='{% url 'buses:index' %}?origin={{ expedition.destination.id }}' class='btn btn-primary'>Origin</a> <a href='{% url 'buses:index' %}?destination={{ expedition.destination.id }}' class='btn btn-primary'>Destination</a>">{{ expedition.destination.name }}</button></td>
                 <td>{{ expedition.arrival|date:'H:i' }}</td>
                 <td><a href="{{ expedition.url }}">Route</a></td>
             </tr>

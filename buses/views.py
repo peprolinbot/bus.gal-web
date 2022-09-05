@@ -10,7 +10,8 @@ import time
 
 
 def index(request):
-    return render(request, 'buses/index.html', {'form': SearchForm()})
+    form = SearchForm(initial=request.GET)
+    return render(request, 'buses/index.html', {'form': form})
 
 
 def search(request):
