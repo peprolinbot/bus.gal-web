@@ -1,7 +1,7 @@
 {% extends 'buses/base.html' %}
 {% block content %}
     {% if expeditions %}
-        <h1 class="text-center my-4"><b>{{ origin.name }} ➡️ {{ destination.name }}</b> 🗓️ {{ date|date:'d/m/Y' }}</h1>
+        <h1 class="text-center my-4"><b>{{ origin.name }} <button class="btn btn-outline-primary btn-lg" style="text-decoration: none;" href="{% url 'buses:results' destination.id origin.id timestamp %}">↔️</button> {{ destination.name }}</b> 🗓️ {{ date|date:'d/m/Y' }}</h1>
         <table class="table table-striped">
             <tr>
                 <th scope="col">Origin</th>

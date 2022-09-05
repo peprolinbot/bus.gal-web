@@ -34,4 +34,4 @@ def results(request, origin_id, destination_id, timestamp):  # Date is a UNIX ti
 
     trip = busapi.Trip(origin, destination, date)
 
-    return render(request, 'buses/results.html', {'origin': trip.origin, 'destination': trip.destination, 'date': trip.date, 'expeditions': trip.expeditions})
+    return render(request, 'buses/results.html', {'origin': trip.origin, 'destination': trip.destination, 'date': trip.date, 'timestamp': timestamp, 'expeditions': trip.expeditions})
