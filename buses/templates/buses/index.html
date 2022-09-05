@@ -1,0 +1,12 @@
+{% extends 'buses/base.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+    <form action="{% url 'buses:search' %}" method="post" class="mx-5 mt-5">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <script>
+            $(".form-select").removeClass("form-select"); // For bootstrap-select to work correctly
+        </script>
+        {% bootstrap_button button_type="submit" content="Search" extra_classes="w-100" %}
+    </form>
+{% endblock %}

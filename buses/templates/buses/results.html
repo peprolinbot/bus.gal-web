@@ -1,0 +1,26 @@
+{% extends 'buses/base.html' %}
+{% block content %}
+    {% if expeditions %}
+        <h1 class="text-center my-4"><b>{{ origin.name }} ➡️ {{ destination.name }}</b> 🗓️ {{ date|date:'d/m/Y' }}</h1>
+        <table class="table table-striped">
+            <tr>
+                <th scope="col">Origin</th>
+                <th scope="col">Departure</th>
+                <th scope="col">Destination</th>
+                <th scope="col">Arrival</th>
+                <th scope="col">More information</th>
+            </tr>
+            {% for expedition in expeditions %}
+            <tr>
+                <td>{{ expedition.origin.name }}</td>
+                <td>{{ expedition.departure|date:'H:i' }}</td>
+                <td>{{ expedition.destination.name }}</td>
+                <td>{{ expedition.arrival|date:'H:i' }}</td>
+                <td><a href="{{ expedition.url }}">Route</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h1 class="text-center my-4"><b>No expeditions are available</b> 😭</h1>
+    {% endif %}
+{% endblock %}
