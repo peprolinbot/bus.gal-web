@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  bus.gal-web:
+    image: codeberg.org/peprolinbot/bus.gal-web:latest
+    restart: unless-stopped
+    environment:
+      - DJANGO_ALLOWED_HOSTS=galibus.peprolinbot.com
+      - DJANGO_SECRET_KEY=changemetosomethingsecureplease
+    ports:
+      - 8080:80
