@@ -24,7 +24,8 @@ pipeline:
       repo: *repo
       registry: quay.io
       tags: latest
-      username: quay_user
+      username:
+        from_secret: quay_user
       password:
         from_secret: quay_token
     when:
