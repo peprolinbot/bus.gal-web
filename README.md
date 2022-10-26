@@ -23,7 +23,7 @@ docker run -d --name bus.gal-web \
     -e DJANGO_ALLOWED_HOSTS="example.com" \
     -e DJANGO_SECRET_KEY="changemetosomethingsecureplease" \
     -p 8080:80 \
-    codeberg.org/peprolinbot/bus.gal-web:latest
+    quay.io/peprolinbot/bus.gal-web:latest
 ```
 
 Or you can also use the `docker-compose.yml` file at the root of this repo. You know: `docker-compose up -d`.
