@@ -2,7 +2,7 @@ branches: master
 
 variables:
   - &file Dockerfile
-  - &repo codeberg.org/${CI_REPO_OWNER}/bus.gal-web
+  - &repo quay.io/peprolinbot/bus.gal-web
 
 pipeline:
   dryrun:
@@ -21,7 +21,7 @@ pipeline:
     settings:
       dockerfile: *file
       platforms: linux/amd64
-      repo: *repo
+      repo: ${CI_REPO_OWNER}/hello
       registry: quay.io
       tags: latest
       username:
