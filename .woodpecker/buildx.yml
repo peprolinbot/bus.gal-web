@@ -22,10 +22,10 @@ pipeline:
       dockerfile: *file
       platforms: linux/amd64
       repo: *repo
-      registry: codeberg.org
+      registry: quay.io
       tags: latest
-      username: ${CI_REPO_OWNER}
+      username: quay_user
       password:
-        from_secret: cb_token
+        from_secret: quay_token
     when:
       event: push
