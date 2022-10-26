@@ -8,7 +8,7 @@ An unofficial clone of [bus.gal](https://www.bus.gal/) made with [Django](https:
 
 You can find an instance hosted by myself on [galibus.peprolinbot.com](https://galibus.peprolinbot.com).
 
-Data is obtained through  [bus.gal-api](https://github.com/peprolinbot/bus.gal-api)
+Data is obtained through  [bus.gal-api](https://github.com/peprolinbot/bus.gal-api).
 
 ## 🔧 How to Install
 
