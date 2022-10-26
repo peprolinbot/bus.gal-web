@@ -21,7 +21,7 @@ pipeline:
     settings:
       dockerfile: *file
       platforms: linux/amd64
-      repo: ${CI_REPO_OWNER}/hello
+      repo: *repo
       registry: quay.io
       tags: latest
       username:
