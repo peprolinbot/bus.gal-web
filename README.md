@@ -59,7 +59,7 @@ export DJANGO_DEBUG=true
 python3 manage.py runserver
 ```
 
-Please check [Django documentation](https://docs.djangoproject.com/en/4.1/).
+Please check [Django's documentation](https://docs.djangoproject.com/en/4.1/).
 
 ## ⚠️ Disclaimer
 
