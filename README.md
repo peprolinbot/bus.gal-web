@@ -35,6 +35,8 @@ Or you can also use the `docker-compose.yml` file at the root of this repo. You 
 | `DJANGO_DEBUG` (bool)    | Whether to enable Django's debug mode. Leave it false in production. _(Default: False)_
 | `DJANGO_ALLOWED_HOSTS` | Space-separated list of host/domain names that Django can serve. Not needed in debug mode. _(Default: "")_
 | `DJANGO_SECRET_KEY`  |  The key to securing signed data. Must be randomly generated and kept secure. _(Default: "django-insecure-(krka)#p79n81tjf-)dy9f1!k^4*j&+qf5_eurt7)o%8%mr1ce")_
+| `GUNICORN_WORKERS`  |  Gunicorn's `--workers` argument _(Default: 3)_
+| `GUNICORN_TIMEOUT`  |  Gunicorn's `--timeout` argument _(Default: 30)_
 
 _**Note🗒️:**_ DJANGO_DEBUG is true only when the variable's value is the string "true" (not case sensitive)
 
