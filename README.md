@@ -2,7 +2,7 @@
 
 <img src="buses/static/buses/logo.svg" alt="bus.gal-telegram" width=200/>
 
-[![status-badge](https://woodpecker.peprolinbot.com/api/badges/peprolinbot/bus.gal-web/status.svg)](https://woodpecker.peprolinbot.com/peprolinbot/bus.gal-web)
+[![Docker Repository on Quay](https://quay.io/repository/peprolinbot/bus.gal-web/status "Docker Repository on Quay")](https://quay.io/repository/peprolinbot/bus.gal-web)
 
 An unofficial clone of [bus.gal](https://www.bus.gal/) made with [Django](https://www.djangoproject.com/) that serves you info about the buses from the Galician Public Transport Network. 
 
