@@ -1,26 +1,41 @@
 {% extends 'buses/base.html' %}
 {% block content %}
-    {% if expeditions %}
-        <h1 class="text-center my-4"><b>{{ origin.name }} <a class="btn btn-outline-primary btn-lg" style="text-decoration: none;" href="{% url 'buses:results' destination.id origin.id timestamp %}">↔️</a> {{ destination.name }}</b> 🗓️ {{ date|date:'d/m/Y' }}</h1>
-        <table class="table table-striped">
-            <tr>
-                <th scope="col">Origin</th>
-                <th scope="col">Departure</th>
-                <th scope="col">Destination</th>
-                <th scope="col">Arrival</th>
-                <th scope="col">More information</th>
-            </tr>
-            {% for expedition in expeditions %}
-            <tr>
-                <td><button class="btn btn-outline-dark" data-bs-toggle="popover" data-bs-html="true" data-bs-title="Set as..." data-bs-content="<a href='{% url 'buses:index' %}?origin={{ expedition.origin.id }}' class='btn btn-primary'>Origin</a> <a href='{% url 'buses:index' %}?destination={{ expedition.origin.id }}' class='btn btn-primary'>Destination</a>">{{ expedition.origin.name }}</button></td>
-                <td>{{ expedition.departure|date:'H:i' }}</td>
-                <td><button class="btn btn-outline-dark" data-bs-toggle="popover" data-bs-html="true" data-bs-title="Set as..." data-bs-content="<a href='{% url 'buses:index' %}?origin={{ expedition.destination.id }}' class='btn btn-primary'>Origin</a> <a href='{% url 'buses:index' %}?destination={{ expedition.destination.id }}' class='btn btn-primary'>Destination</a>">{{ expedition.destination.name }}</button></td>
-                <td>{{ expedition.arrival|date:'H:i' }}</td>
-                <td><b>{{ expedition.code }}</b> - <a href="{{ expedition.url }}">{{ expedition.line.name }}</a></td>
-            </tr>
-            {% endfor %}
-        </table>
-    {% else %}
-        <h1 class="text-center my-4"><b>No expeditions are available</b> 😭</h1>
-    {% endif %}
+{% if expeditions %}
+<div class="row mb-3 mt-2">
+    <h1 class="text-center"><b>{{ origin.name }} <a class="btn btn-outline-primary btn-lg"
+                style="text-decoration: none;"
+                href="{% url 'buses:results' destination.id origin.id timestamp %}">↔️</a> {{ destination.name }}</b>
+        🗓️ {{ date|date:'d/m/Y' }}</h1>
+</div>
+<div class="row mb-3">
+    <table class="table table-striped">
+        <tr>
+            <th scope="col">Origin</th>
+            <th scope="col">Departure</th>
+            <th scope="col">Destination</th>
+            <th scope="col">Arrival</th>
+            <th scope="col">More information</th>
+        </tr>
+        {% for expedition in expeditions %}
+        <tr>
+            <td><button class="btn btn-outline-secondary" data-bs-toggle="popover" data-bs-html="true"
+                    data-bs-title="Set as..."
+                    data-bs-content="<a href='{% url 'buses:index' %}?origin={{ expedition.origin.id }}' class='btn btn-primary'>Origin</a> <a href='{% url 'buses:index' %}?destination={{ expedition.origin.id }}' class='btn btn-primary'>Destination</a>">{{ expedition.origin.name }}</button>
+            </td>
+            <td>{{ expedition.departure|date:'H:i' }}</td>
+            <td><button class="btn btn-outline-secondary" data-bs-toggle="popover" data-bs-html="true"
+                    data-bs-title="Set as..."
+                    data-bs-content="<a href='{% url 'buses:index' %}?origin={{ expedition.destination.id }}' class='btn btn-primary'>Origin</a> <a href='{% url 'buses:index' %}?destination={{ expedition.destination.id }}' class='btn btn-primary'>Destination</a>">{{ expedition.destination.name }}</button>
+            </td>
+            <td>{{ expedition.arrival|date:'H:i' }}</td>
+            <td><b>{{ expedition.code }}</b> - <a href="{{ expedition.url }}">{{ expedition.line.name }}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% else %}
+<div class="row mb-3 mt-2">
+    <h1 class="text-center"><b>No expeditions are available</b> 😭</h1>
+</div>
+{% endif %}
 {% endblock %}
