@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 
 from .forms import SearchForm
@@ -7,11 +7,21 @@ from .forms import SearchForm
 import busGal_api as busapi
 from datetime import datetime
 import time
+import json
 
 
 def index(request):
     form = SearchForm(initial=request.GET)
     return render(request, 'buses/index.html', {'form': form})
+
+
+def autocomplete(request):
+    query = request.GET.get("text")
+    stops = busapi.search_stop(query)[:2]
+
+    options = [{"value": stop.id, "text": stop.name} for stop in stops]
+
+    return JsonResponse({"options": options})
 
 
 def search(request):
