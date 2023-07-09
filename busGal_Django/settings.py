@@ -122,3 +122,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # For HTTPS to work
 CSRF_TRUSTED_ORIGINS = [f"https://{host}" for host in ALLOWED_HOSTS]
+
+# Bootstrap5
+BOOTSTRAP5 = {
+    "css_url": f"/{STATIC_URL}buses/css/libs/bootstrap.min.css",
+    "javascript_url": f"/{STATIC_URL}buses/js/libs/bootstrap.bundle.min.js"
+}
