@@ -1,0 +1,15 @@
+body {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrapper {
+    padding-bottom: 75px;
+  }
+
+.footer {
+    position: absolute;
+    height: 75px;
+    bottom: 0;
+    width: 100%;
+}
