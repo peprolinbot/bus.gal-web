@@ -5,17 +5,14 @@ import datetime
 
 
 class SearchForm(forms.Form):
-    def get_choice_stops():
-        stops = busapi.get_stops()
-        choices = [(stop.id, stop.name) for stop in stops]
-        return choices
-    choices = get_choice_stops()
-    origin = forms.ChoiceField(label='Origin', choices=choices, widget=forms.Select(
-        attrs={'class': 'selectpicker form-control', 'data-live-search': 'true'}))
-    destination = forms.ChoiceField(label='Destination', choices=choices, widget=forms.Select(
-        attrs={'class': 'selectpicker form-control', 'data-live-search': 'true'}))
+    origin = forms.ChoiceField(required=True, label='Origin', widget=forms.Select(
+        attrs={'class': 'select2', 'data-placeholder': 'Start typing to search'}))
+
+    destination = forms.ChoiceField(required=True, label='Destination', widget=forms.Select(
+        attrs={'class': 'select2', 'data-placeholder': 'Start typing to search'}))
 
     def get_current_date_formatted():
         return datetime.date.today().strftime("%Y-%m-%d")
-    date = forms.DateField(label='Date', initial=datetime.date.today, widget=forms.DateInput(attrs={
-                           'type': 'date', 'min': get_current_date_formatted}))  # type=date for the bootstrap+system datepicker to appear
+
+    date = forms.DateField(required=True, label='Date', initial=datetime.date.today, widget=forms.DateInput(attrs={
+                           'class': 'bg-white text-black', 'type': 'date', 'min': get_current_date_formatted}))  # type=date for the bootstrap+system datepicker to appear

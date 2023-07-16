@@ -1,8 +1,7 @@
-{% load django_bootstrap5 %}
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
 
 <head>
     <meta charset="utf-8">
@@ -10,7 +9,17 @@
     <meta name="description"
         content="An unofficial clone of bus.gal that serves you info about the buses from the Galician Public Transport Network">
     <meta name="author" content="peprolinbot">
-    <link rel="icon" href="{% static 'buses/logo.svg' %}">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'buses/img/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'buses/img/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'buses/img/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'buses/img/favicon/site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'buses/img/favicon/safari-pinned-tab.svg' %}" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="theme-color" content="#ffffff">
+
+
 
     <title>{% block title %}GaliBus{% endblock %}</title>
 
@@ -18,65 +27,60 @@
     ================================================== -->
 
     <!-- Bootstrap -->
+    {% load django_bootstrap5 %}
     {% bootstrap_css %}
-
-    <!-- bootstrap-select -->
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css"
-        integrity="sha256-cwDJdubMsvIJcAYY5EXUZAuQLxSlELxFYQlxvsxdYs8=" crossorigin="anonymous">
-
-    <!-- Custom CSS -->
-    {% block css %}{% endblock %}
-
-</head>
-
-<body class="d-flex flex-column min-vh-100">
-
-    {% block navbar %}
-    {% include 'buses/_items/navbar.html' %}
-    {% endblock %}
-
     {% bootstrap_messages %}
 
+    <!-- Select2 -->
+    <link href="{% static 'buses/css/libs/select2.min.css' %}" rel="stylesheet">
+    <link href="{% static 'buses/css/libs/select2-bootstrap-5-theme.min.css' %}" rel="stylesheet">
 
-    {% block content %}{% endblock %}
+    <!-- Custom CSS -->
+    <link href="{% static 'buses/css/base.css' %}" rel="stylesheet">
+    {% block css %}{% endblock %}
 
-    <div class="text-center align-items-center mx-4 mt-auto">
-        <hr>
-        <footer>
-            <p>Made with ❤️ by peprolinbot</p>
-        </footer>
-    </div>
 
     <!-- JavaScript stuff
-================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    ================================================== -->
 
     <!-- jQuery -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"
-        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="{% static 'buses/js/libs/jquery.min.js' %}"></script>
 
     <!-- Bootstrap -->
     {% bootstrap_javascript %}
 
-    <!-- Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha256-BRqBN7dYgABqtY9Hd4ynE+1slnEw+roEPFzQ7TRRfcg=" crossorigin="anonymous"></script>
+    <!-- Select2 -->
+    <script src="{% static 'buses/js/libs/select2.min.js' %}"></script>
 
-    <!-- bootstrap-select -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"
-        integrity="sha256-obLPuLg5xxN2MC2szEaXLaN8tEKYgeCMn+TSPMxqOfE=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/i18n/defaults-es_ES.min.js"
-        integrity="sha256-Jo3shEsqZ5PnfH4mMSaqrrbYzpNNSNQsCkjYAWkbW8o=" crossorigin="anonymous"></script>
+    <!-- Popper -->
+    <script src="{% static 'buses/js/libs/popper.min.js' %}"></script>
 
     <!-- Custom JS -->
     {% block js %}{% endblock %}
+</head>
 
+<body>
+    {% block navbar %}
+    {% include 'buses/_items/navbar.html' %}
+    {% endblock %}
+
+    <div id="content-wrapper" class="container-fluid">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer class="footer text-center">
+        <hr class="mx-5">
+        <p>Made with ❤️ by <b>peprolinbot</b> - <a href="https://codeberg.org/peprolinbot/bus.gal-web"
+                target="_blank">Source code</a></p>
+    </footer>
+
+    <!-- Enable popovers -->
     <script>
-        const popoverTriggerList = $('[data-bs-toggle="popover"]').toArray()
-        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+        jQuery(document).ready(function ($) {
+            const popoverTriggerList = $('[data-bs-toggle="popover"]').toArray()
+            const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+        });
     </script>
-
 </body>
 
 </html>

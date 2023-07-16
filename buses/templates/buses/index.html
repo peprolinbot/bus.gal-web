@@ -1,9 +1,23 @@
 {% extends 'buses/base.html' %}
 {% load django_bootstrap5 %}
 {% block content %}
-    <form action="{% url 'buses:search' %}" method="post" class="mx-5 mt-5">
+<div class="container justify-content-center my-5">
+    <form action="" method="post">
         {% csrf_token %}
         {% bootstrap_form form %}
-        {% bootstrap_button button_type="submit" content="Search" extra_classes="w-100" %}
+        {% bootstrap_button button_type="submit" content="Search" extra_classes="w-100 mt-3" %}
     </form>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(".select2").select2({
+            theme: "bootstrap-5",
+            ajax: {
+                url: "{% url 'buses:autocomplete' %}",
+                dataType: "json"
+            }
+        });
+    });
+</script>
 {% endblock %}

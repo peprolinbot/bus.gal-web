@@ -32,13 +32,13 @@ ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', "").split()
 # Application definition
 
 INSTALLED_APPS = [
-    'buses.apps.BusesConfig',
+    'buses',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_bootstrap5',
+    'django_bootstrap5'
 ]
 
 MIDDLEWARE = [
@@ -122,3 +122,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # For HTTPS to work
 CSRF_TRUSTED_ORIGINS = [f"https://{host}" for host in ALLOWED_HOSTS]
+
+# Bootstrap5
+BOOTSTRAP5 = {
+    "css_url": f"/{STATIC_URL}buses/css/libs/bootstrap.min.css",
+    "javascript_url": f"/{STATIC_URL}buses/js/libs/bootstrap.bundle.min.js"
+}
