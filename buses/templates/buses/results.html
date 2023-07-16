@@ -1,10 +1,12 @@
 {% extends 'buses/base.html' %}
 {% block content %}
 {% if expeditions %}
+{% load buses_extras %}
 <div class="row mb-3 mt-2">
     <h1 class="text-center"><b>{{ origin.name }} <a class="btn btn-outline-primary btn-lg"
                 style="text-decoration: none;"
-                href="{% url 'buses:results' destination.id origin.id timestamp %}">↔️</a> {{ destination.name }}</b>
+                href="{% url 'buses:results' destination.id destination.type destination.name origin.id origin.type origin.name timestamp %}">↔️</a>
+            {{ destination.name }}</b>
         🗓️ {{ date|date:'d/m/Y' }}</h1>
 </div>
 <div class="row mb-3">
@@ -18,16 +20,13 @@
         </tr>
         {% for expedition in expeditions %}
         <tr>
-            <td><button class="btn btn-outline-secondary" data-bs-toggle="popover" data-bs-html="true"
-                    data-bs-title="Set as..."
-                    data-bs-content="<a href='{% url 'buses:index' %}?origin={{ expedition.origin.id }}' class='btn btn-primary'>Origin</a> <a href='{% url 'buses:index' %}?destination={{ expedition.origin.id }}' class='btn btn-primary'>Destination</a>">{{ expedition.origin.name }}</button>
+            <td>
+                {{ expedition.origin|stop_button }}
             </td>
-            <td>{{ expedition.departure|date:'H:i' }}</td>
-            <td><button class="btn btn-outline-secondary" data-bs-toggle="popover" data-bs-html="true"
-                    data-bs-title="Set as..."
-                    data-bs-content="<a href='{% url 'buses:index' %}?origin={{ expedition.destination.id }}' class='btn btn-primary'>Origin</a> <a href='{% url 'buses:index' %}?destination={{ expedition.destination.id }}' class='btn btn-primary'>Destination</a>">{{ expedition.destination.name }}</button>
+            <td>{{ expedition.origin.time|date:'H:i' }}</td>
+            <td>{{ expedition.destination|stop_button }}
             </td>
-            <td>{{ expedition.arrival|date:'H:i' }}</td>
+            <td>{{ expedition.destination.time|date:'H:i' }}</td>
             <td><b>{{ expedition.code }}</b> - <a href="{{ expedition.url }}">{{ expedition.line.name }}</a></td>
         </tr>
         {% endfor %}
