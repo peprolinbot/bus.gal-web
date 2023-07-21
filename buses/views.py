@@ -52,7 +52,9 @@ def autocomplete(request):
     query = request.GET.get("q")
     stops = busapi.stops.search_stops(query)
 
-    options = [{"id": _create_form_stop_string(stop), "text": stop.name}
+    group_type_icons = ["🏢", "🎖️", "📍", "📌"] # Imagine it's one-indexed
+
+    options = [{"id": _create_form_stop_string(stop), "text": f"{group_type_icons[stop.group_type-1]} {stop.name}"}
                for stop in stops]
 
     return JsonResponse({"results": options})
