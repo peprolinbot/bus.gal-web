@@ -21,7 +21,7 @@ class StopsCache():
 
         if not os.path.exists(self.cache_dir):
             os.mkdir(self.cache_dir)
-            create_in(self.cache_dir, self.schema)
+            self.ix = create_in(self.cache_dir, self.schema)
         else:
             self.ix = open_dir(self.cache_dir)
 
