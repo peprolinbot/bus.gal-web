@@ -60,7 +60,7 @@ def autocomplete(request):
     return JsonResponse({"results": options})
 
 
-def results(request, origin_id, origin_type, origin_name, destination_id, destination_type, destination_name, timestamp):  # Date is a UNIX timestamp
+def results(request, origin_id, origin_type, origin_name, destination_id, destination_type, destination_name, timestamp=int(time.mktime(date.today().timetuple()))):  # Date is a UNIX timestamp
     origin = busapi.stops.Stop(
         id=origin_id,
         type=origin_type,
