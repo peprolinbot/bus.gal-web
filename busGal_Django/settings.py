@@ -128,3 +128,6 @@ BOOTSTRAP5 = {
     "css_url": f"/{STATIC_URL}buses/css/libs/bootstrap.min.css",
     "javascript_url": f"/{STATIC_URL}buses/js/libs/bootstrap.bundle.min.js"
 }
+
+# Bus stops cache directory
+STOPS_CACHE_DIR = os.environ.get("STOPS_CACHE_DIR", "/tmp/bgw-stops-cache")
