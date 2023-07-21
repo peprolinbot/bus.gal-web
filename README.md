@@ -1,6 +1,6 @@
 # bus.gal-web
 
-<img src="buses/static/buses/logo.svg" alt="bus.gal-telegram" width=200/>
+<img src="buses/static/buses/img/logo.svg" alt="bus.gal-web" width=200/>
 
 [![Docker Repository on Quay](https://quay.io/repository/peprolinbot/bus.gal-web/status "Docker Repository on Quay")](https://quay.io/repository/peprolinbot/bus.gal-web)
 
