@@ -53,7 +53,10 @@ def index(request):
 def autocomplete(request):
     query = request.GET.get("q")
 
-    options = stops_cache.autocomplete_search(query)
+    if query is None:
+        options = []
+    else:
+        options = stops_cache.autocomplete_search(query)
 
     return JsonResponse({"results": options})
 
