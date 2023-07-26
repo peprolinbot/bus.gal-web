@@ -1,5 +1,11 @@
 {% extends 'buses/base.html' %}
 {% load django_bootstrap5 %}
+{% load static %}
+
+{% block css %}
+<link href="{% static 'buses/css/index.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 <div class="container justify-content-center my-5">
     <form action="" method="post">
@@ -13,10 +19,12 @@
     $(document).ready(function () {
         $(".select2").select2({
             theme: "bootstrap-5",
+            width: '100%',
             ajax: {
                 url: "{% url 'buses:autocomplete' %}",
                 dataType: "json"
-            }
+            },
+            closeOnSelect: false
         });
     });
 </script>
