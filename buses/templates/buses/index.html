@@ -23,7 +23,8 @@
             ajax: {
                 url: "{% url 'buses:autocomplete' %}",
                 dataType: "json"
-            }
+            },
+            closeOnSelect: false
         });
     });
 </script>
