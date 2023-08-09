@@ -2,6 +2,8 @@ from django.conf import settings
 
 from ..templatetags.buses_extras import form_stop_string
 
+from whoosh.analysis import CharsetFilter
+from whoosh.support.charset import accent_map
 from whoosh.fields import Schema, STORED, NUMERIC, TEXT
 from whoosh.index import create_in, open_dir
 from whoosh.qparser import QueryParser
@@ -13,8 +15,9 @@ from busGal_api.transport.stops import get_all_stops
 
 
 class StopsCache():
+    name_analyzer = CharsetFilter(accent_map)
     schema = Schema(id=STORED, group_type=NUMERIC(stored=True, sortable=True), name=TEXT(
-        stored=True))  # group_type is NUMERIC instead of SORTED because it needs to be sortable
+        stored=True, analyzer=name_analyzer))  # group_type is NUMERIC instead of SORTED because it needs to be sortable
 
     def __init__(self, cache_dir=settings.STOPS_CACHE_DIR):
         self.cache_dir = cache_dir
