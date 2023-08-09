@@ -42,9 +42,15 @@ class StopsCache():
             writer.mergetype = writing.CLEAR
 
     def autocomplete_search(self, text):
+        name_query = QueryParser("name", stops_cache.ix.schema).parse(text)
         with self.ix.searcher() as searcher:
-            name_query = QueryParser("name", stops_cache.ix.schema).parse(text)
             results = searcher.search(name_query, sortedby="group_type")
+
+            # Search for the corrected query
+            corrected = searcher.correct_query(name_query, text)
+            if corrected.query != name_query:
+                results_corrected = searcher.search(corrected.query, sortedby="group_type")
+                results.upgrade_and_extend(results_corrected)
 
             # Imagine it's one-indexed
             group_type_icons = ["🏢", "🎖️", "📍", "📌"]
