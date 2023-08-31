@@ -11,14 +11,14 @@
     <meta name="author" content="peprolinbot">
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'buses/img/favicon/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'buses/img/favicon/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'buses/img/favicon/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'buses/img/favicon/site.webmanifest' %}">
-    <link rel="mask-icon" href="{% static 'buses/img/favicon/safari-pinned-tab.svg' %}" color="#5bbad5">
-    <link rel="shortcut icon" href="{% static 'buses/img/favicon/favicon.ico' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'main/img/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'main/img/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'main/img/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'main/img/favicon/site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'main/img/favicon/safari-pinned-tab.svg' %}" color="#5bbad5">
+    <link rel="shortcut icon" href="{% static 'main/img/favicon/favicon.ico' %}">
     <meta name="msapplication-TileColor" content="#2b5797">
-    <meta name="msapplication-config" content="{% static 'buses/img/favicon/browserconfig.xml' %}">
+    <meta name="msapplication-config" content="{% static 'main/img/favicon/browserconfig.xml' %}">
     <meta name="theme-color" content="#ffffff">
 
 
@@ -34,11 +34,11 @@
     {% bootstrap_messages %}
 
     <!-- Select2 -->
-    <link href="{% static 'buses/css/libs/select2.min.css' %}" rel="stylesheet">
-    <link href="{% static 'buses/css/libs/select2-bootstrap-5-theme.min.css' %}" rel="stylesheet">
+    <link href="{% static 'main/css/libs/select2.min.css' %}" rel="stylesheet">
+    <link href="{% static 'main/css/libs/select2-bootstrap-5-theme.min.css' %}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="{% static 'buses/css/base.css' %}" rel="stylesheet">
+    <link href="{% static 'main/css/base.css' %}" rel="stylesheet">
     {% block css %}{% endblock %}
 
 
@@ -46,16 +46,16 @@
     ================================================== -->
 
     <!-- jQuery -->
-    <script src="{% static 'buses/js/libs/jquery.min.js' %}"></script>
+    <script src="{% static 'main/js/libs/jquery.min.js' %}"></script>
 
     <!-- Bootstrap -->
     {% bootstrap_javascript %}
 
     <!-- Select2 -->
-    <script src="{% static 'buses/js/libs/select2.min.js' %}"></script>
+    <script src="{% static 'main/js/libs/select2.min.js' %}"></script>
 
     <!-- Popper -->
-    <script src="{% static 'buses/js/libs/popper.min.js' %}"></script>
+    <script src="{% static 'main/js/libs/popper.min.js' %}"></script>
 
     <!-- Custom JS -->
     {% block js %}{% endblock %}
@@ -63,7 +63,7 @@
 
 <body>
     {% block navbar %}
-    {% include 'buses/_items/navbar.html' %}
+    {% include 'main/_items/navbar.html' %}
     {% endblock %}
 
     <div id="content-wrapper" class="container-fluid">

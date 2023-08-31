@@ -2,7 +2,7 @@ from schedule import Scheduler
 import threading
 import time
 
-from .utils.stops_cache import stops_cache
+from ..buses.utils.stops_cache import stops_cache
 
 def run_continuously(self, interval=1):
     """Continuously run, while executing pending jobs at each elapsed

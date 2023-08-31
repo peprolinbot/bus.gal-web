@@ -1,3 +1,3 @@
 def on_starting(server):
-    from buses import jobs
+    from main import jobs
     jobs.start_scheduler()
