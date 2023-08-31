@@ -25,10 +25,9 @@ class StopsCache():
         if not os.path.exists(self.cache_dir):
             os.mkdir(self.cache_dir)
             self.ix = create_in(self.cache_dir, self.schema)
+            self.update_index()
         else:
             self.ix = open_dir(self.cache_dir)
-
-        self.update_index()
 
     def update_index(self):
         stops = get_all_stops()
