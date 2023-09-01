@@ -1,0 +1,44 @@
+{% load mjml %}
+{% load static %}
+{% load card_format %}
+
+{% mjml %}
+<mjml>
+  <mj-body>
+    <mj-section>
+      <mj-column>
+
+        <mj-image width="100px" src="{{base_url}}{% static 'xenovaping/img/xenovaping.svg' %}"></mj-image>
+        <mj-text font-size="32px" font-family="helvetica" align="center"><i><b>XeNovaPing</b></i></mj-text>
+
+        <mj-divider border-color="#ff0068"></mj-divider>
+
+        <mj-text font-size="20px" color="#0068ff" font-family="helvetica">Hi there 👋, you have a pending refund of
+          <b>{{ pending|floatformat:2 }}€</b> on your <i>Xente Nova</i> card 💳 with number <b>{{ number|add_card_number_spaces }}</b>. You can
+          go to your nearest <i>ABANCA</i> 🏧 to claim them.</mj-text>
+
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column border-radius="15px" width="280px" background-color="#0068ff">
+        <mj-text font-size="50px" color="#ffffff" font-family="arial" align="center"><b>{{ pending|floatformat:2 }}
+            €</b></mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section padding="20px 0">
+      <mj-column>
+        <mj-text align="center" color="#000000" font-size="14px">You can remove your card from this notification system
+          <a href="{{base_url}}{% url 'xenovaping:remove_card'%}?card_number={{number}}" target="_blank">here</a>.
+        </mj-text>
+        <mj-text align="center" color="#000000" font-size="11px">This project is not endorsed by, directly affiliated
+          with, maintained by, sponsored by or in any way officially related with la Xunta de Galicia, the bus operators
+          or any of the companies involved in the <a href="https://bus.gal" target="_blank">bus.gal</a> website and/or
+          <a href="https://play.google.com/store/apps/details?id=gal.xunta.transportepublico" target="_blank">the
+            app</a>.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
+{% endmjml %}

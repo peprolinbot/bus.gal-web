@@ -5,7 +5,14 @@ services:
     image: quay.io/peprolinbot/bus.gal-web:latest
     restart: unless-stopped
     environment:
-      - DJANGO_ALLOWED_HOSTS=galibus.peprolinbot.com
+      - DJANGO_ALLOWED_HOSTS=example.com
       - DJANGO_SECRET_KEY=changemetosomethingsecureplease
+      - TPGAL_USER=john@example.com
+      - TPGAL_PASSWORD=rockyou
+      - EMAIL_HOST=127.0.0.1
+      - DEFAULT_FROM_EMAIL=xenovaping@example.com
+      - EMAIL_BASE_URL=http://example.com
+    volumes:
+      - ./db.sqlite3:/app/db.sqlite3
     ports:
       - 8080:80
