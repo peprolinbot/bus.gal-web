@@ -28,7 +28,7 @@ docker run -d --name bus.gal-web \
     -e DEFAULT_FROM_EMAIL="xenovaping@example.com" \
     -e EMAIL_BASE_URL="http://example.com" \
     -p 8080:80 \
-    -v /data/busgalweb-cfg/db.sqlite3:/app/db.sqlite3
+    -v /data/busgalweb-cfg/db.sqlite3:/app/db.sqlite3 \
     quay.io/peprolinbot/bus.gal-web:latest
 ```
 

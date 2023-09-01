@@ -152,6 +152,10 @@ BOOTSTRAP5 = {
 # Bus stops cache directory
 STOPS_CACHE_DIR = os.environ.get("STOPS_CACHE_DIR", "/tmp/bgw-stops-cache")
 
+# This is set during docker builds to change some behavior
+IS_DOCKER_BUILD = os.environ.get('IS_DOCKER_BUILD', "false").lower() == "true"
+
 # Auth info for XeNovaPing
-TPGAL_USER = os.environ["TPGAL_USER"]
-TPGAL_PASSWORD = os.environ["TPGAL_PASSWORD"]
+if not IS_DOCKER_BUILD:
+    TPGAL_USER = os.environ["TPGAL_USER"]
+    TPGAL_PASSWORD = os.environ["TPGAL_PASSWORD"]
