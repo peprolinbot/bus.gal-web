@@ -43,14 +43,20 @@
             <ul class="navbar-nav ms-auto">
 
                 <li class="nav-item">
-                    <a href="/" class="nav-link">Home</a>
+                    <a href="{% url 'buses:index'%}" class="nav-link">Buses</a>
                 </li>
-                <li class="nav-item">
-                    <a href="https://codeberg.org/peprolinbot/bus.gal-web" class="nav-link">Source</a>
-                </li>
-                <li class="nav-item me-3">
-                    <a href="https://paypal.me/peprolinbot" class="nav-link">Donate</a>
-                </li>
+
+                <div class="dropdown nav-item">
+                    <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false" aria-haspopup="true">Xenovaping
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item nav-link" href="{% url 'xenovaping:index'%}">Home</a></li>
+                        <li><a class="dropdown-item nav-link" href="{% url 'xenovaping:add_card'%}">Add card</a></li>
+                        <li><a class="dropdown-item nav-link" href="{% url 'xenovaping:remove_card'%}">Remove card</a>
+                        </li>
+                    </ul>
+                </div>
 
                 <!-- Theme selector -->
                 <li class="nav-item dropdown">

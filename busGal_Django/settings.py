@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY',
                             'django-insecure-(krka)#p79n81tjf-)dy9f1!k^4*j&+qf5_eurt7)o%8%mr1ce')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_DEBUG', "True").lower()=="true"
+DEBUG = os.environ.get('DJANGO_DEBUG', "True").lower() == "true"
 
 ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', "").split()
 
@@ -34,12 +34,15 @@ ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', "").split()
 INSTALLED_APPS = [
     'main',
     'buses',
+    'xenovaping',
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_bootstrap5'
+    'django_bootstrap5',
+    'mjml'
 ]
 
 MIDDLEWARE = [
@@ -76,7 +79,11 @@ WSGI_APPLICATION = 'busGal_Django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sqlite3',
+    }}
 
 
 # Password validation
@@ -121,14 +128,30 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.environ["EMAIL_HOST"]
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', "false").lower() == "true"
+EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL', "false").lower() == "true"
+EMAIL_PORT = os.environ.get("EMAIL_PORT", 25)
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = os.environ["DEFAULT_FROM_EMAIL"]
+# Needed for the images and urls in the emails
+EMAIL_BASE_URL = os.environ["EMAIL_BASE_URL"]
+
 # For HTTPS to work
 CSRF_TRUSTED_ORIGINS = [f"https://{host}" for host in ALLOWED_HOSTS]
 
 # Bootstrap5
 BOOTSTRAP5 = {
-    "css_url": f"/{STATIC_URL}buses/css/libs/bootstrap.min.css",
-    "javascript_url": f"/{STATIC_URL}buses/js/libs/bootstrap.bundle.min.js"
+    "css_url": f"/{STATIC_URL}main/css/libs/bootstrap.min.css",
+    "javascript_url": f"/{STATIC_URL}main/js/libs/bootstrap.bundle.min.js"
 }
 
 # Bus stops cache directory
 STOPS_CACHE_DIR = os.environ.get("STOPS_CACHE_DIR", "/tmp/bgw-stops-cache")
+
+# Auth info for XeNovaPing
+TPGAL_USER = os.environ["TPGAL_USER"]
+TPGAL_PASSWORD = os.environ["TPGAL_PASSWORD"]

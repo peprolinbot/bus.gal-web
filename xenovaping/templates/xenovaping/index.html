@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+
+{% block content %}
+<div class="container justify-content-center text-center my-5 px-5">
+    <img class="mb-4" src="{% static 'xenovaping/img/xenovaping.svg' %}" alt="" width="100" height="100">
+    <h1>XeNovaPing</h1>
+    <p class="lead">XeNovaPing is an UNOFFICIAL free and open-source service which sends you an email when you can get
+        the refund of your trips done with the Xente Nova card (actually any Galician Public Transport card which supports refunds).</p>
+    <p class="lead">
+        <a href="{% url 'xenovaping:add_card'%}" class="btn btn-lg btn-primary fw-bold">Monitor your card!</a>
+    </p>
+</div>
+{% endblock %}

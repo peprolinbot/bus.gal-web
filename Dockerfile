@@ -12,6 +12,7 @@ COPY nginx.conf /etc/nginx/sites-available/default
 COPY . /app
 WORKDIR /app
 RUN python manage.py collectstatic
+RUN python manage.py migrate
 RUN chmod +x entrypoint.sh
 
 

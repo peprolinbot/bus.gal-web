@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<div class="container justify-content-center my-5">
+    <h1 class="mb-5 text-center">🤑 Add a card here to get emailed when it has pending refunds 🤑</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% bootstrap_button button_type="submit" content="Add Card" extra_classes="w-100" %}
+    </form>
+
+    <h5 class="mt-5 text-center">By registering, you're allowing your email and card number to be stored in a database, which is only
+        used for this service to work, you can delete yourself from the system <a
+            href="{% url 'xenovaping:remove_card'%}">here</a></h5>
+</div>
+{% endblock %}

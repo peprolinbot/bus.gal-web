@@ -2,7 +2,8 @@ from schedule import Scheduler
 import threading
 import time
 
-from ..buses.utils.stops_cache import stops_cache
+from buses.utils.stops_cache import stops_cache
+from xenovaping.utils.notifications import run_checks as run_xenovaping_checks
 
 def run_continuously(self, interval=1):
     """Continuously run, while executing pending jobs at each elapsed
@@ -36,4 +37,6 @@ Scheduler.run_continuously = run_continuously
 def start_scheduler():
     scheduler = Scheduler()
     scheduler.every().minute.do(stops_cache.update_index)
+    # scheduler.every(4).hours.do(run_xenovaping_checks)
+    scheduler.every(30).seconds.do(run_xenovaping_checks)
     scheduler.run_continuously()

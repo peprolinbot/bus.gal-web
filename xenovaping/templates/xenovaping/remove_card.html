@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<div class="container justify-content-center my-5">
+    <h1 class="mb-5 text-center">🗑️ Enter the number of the card you'd wish to remove from the system 🗑️</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% bootstrap_button button_type="submit" content="Remove Card" extra_classes="w-100 btn-danger" %}
+    </form>
+</div>
+{% endblock %}

@@ -4,7 +4,7 @@
 
 [![Docker Repository on Quay](https://quay.io/repository/peprolinbot/bus.gal-web/status "Docker Repository on Quay")](https://quay.io/repository/peprolinbot/bus.gal-web)
 
-An unofficial clone of [bus.gal](https://www.bus.gal/) made with [Django](https://www.djangoproject.com/) that serves you info about the buses from the Galician Public Transport Network. 
+An unofficial clone of [bus.gal](https://www.bus.gal/) made with [Django](https://www.djangoproject.com/) that serves you info about the buses from the Galician Public Transport Network, and as a bonus substitutes the, now deprecated, [XeNovaPing](https://github.com/peprolinbot/xenovaping), and sends you an email when you can get the payback of your trips done with the Xente Nova card (actually any Galician Public Transport card which supports refunds. 
 
 You can find an instance hosted by myself on [galibus.peprolinbot.com](https://galibus.peprolinbot.com).
 
@@ -14,7 +14,7 @@ Data is obtained through  [bus.gal-api](https://github.com/peprolinbot/bus.gal-a
 
 ### 🐳 Docker (Recommended)
 
-If you want to host your own instance of the web, it is as easy as a docker container.
+If you want to host your own instance of the web, it is as easy as a docker container. Check the environment variables below to configure important things, as this example below supposes things like the mail server doesn't use authentication, which isn't realistic.
 
 So the command is:
  
@@ -22,7 +22,13 @@ So the command is:
 docker run -d --name bus.gal-web \
     -e DJANGO_ALLOWED_HOSTS="example.com" \
     -e DJANGO_SECRET_KEY="changemetosomethingsecureplease" \
+    -e TPGAL_USER="john@example.com" \
+    -e TPGAL_PASSWORD="rockyou" \
+    -e EMAIL_HOST="127.0.0.1" \
+    -e DEFAULT_FROM_EMAIL="xenovaping@example.com" \
+    -e EMAIL_BASE_URL="http://example.com" \
     -p 8080:80 \
+    -v /data/busgalweb-cfg/db.sqlite3:/app/db.sqlite3
     quay.io/peprolinbot/bus.gal-web:latest
 ```
 
@@ -38,8 +44,20 @@ Or you can also use the `docker-compose.yml` file at the root of this repo. You 
 | `STOPS_CACHE_DIR`  |  The place to store the stops cache. This is a [whoosh](https://whoosh.readthedocs.io/) index _(Default: "/tmp/bgw-stops-cache")_
 | `GUNICORN_WORKERS`  |  Gunicorn's `--workers` argument _(Default: 3)_
 | `GUNICORN_TIMEOUT`  |  Gunicorn's `--timeout` argument _(Default: 30)_
+| `TPGAL_USER`  |  User to login to the TPGal API _(Required)_
+| `TPGAL_PASSWORD`  |  Password to login to the TPGal API _(Required)_
+| `EMAIL_HOST`  |  Smtp server host _(Required)_
+| `EMAIL_USE_TLS`  |  _(Default: False)_
+| `EMAIL_USE_SSL`  |  _(Default: False)_
+| `EMAIL_PORT`  |  _(Default: 25)_
+| `EMAIL_HOST_USER`  |   _(Default: "")_
+| `EMAIL_HOST_PASSWORD`  |   _(Default: "")_
+| `DEFAULT_FROM_EMAIL`  |  Email address used when sending _(Required)_
+| `EMAIL_BASE_URL`  |  Used for the images and urls in the emails _(Required)_
 
-_**Note🗒️:**_ DJANGO_DEBUG is true only when the variable's value is the string "true" (not case sensitive)
+_**Note🗒️:**_ Booleans are only true when their value is the string "true" (not case sensitive)
+
+_**Note🗒️:**_ EMAIL_USE_TLS/EMAIL_USE_SSL are mutually exclusive, so only set one of those settings to True.
 
 _**Tip💡:**_ You can generate a secret key with `openssl rand -hex 32`
 
