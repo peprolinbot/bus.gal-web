@@ -37,6 +37,5 @@ Scheduler.run_continuously = run_continuously
 def start_scheduler():
     scheduler = Scheduler()
     scheduler.every().minute.do(stops_cache.update_index)
-    # scheduler.every(4).hours.do(run_xenovaping_checks)
-    scheduler.every(30).seconds.do(run_xenovaping_checks)
+    scheduler.every(4).hours.do(run_xenovaping_checks)
     scheduler.run_continuously()
