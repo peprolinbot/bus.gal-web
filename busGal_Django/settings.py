@@ -130,15 +130,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = os.environ["EMAIL_HOST"]
+EMAIL_HOST = os.environ.get("EMAIL_HOST", "localhost")
 EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', "false").lower() == "true"
 EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL', "false").lower() == "true"
 EMAIL_PORT = os.environ.get("EMAIL_PORT", 25)
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
-DEFAULT_FROM_EMAIL = os.environ["DEFAULT_FROM_EMAIL"]
+DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", "webmaster@localhost")
 # Needed for the images and urls in the emails
-EMAIL_BASE_URL = os.environ["EMAIL_BASE_URL"]
+EMAIL_BASE_URL = os.environ.get("EMAIL_BASE_URL", "http://127.0.0.1:8000")
 
 # For HTTPS to work
 CSRF_TRUSTED_ORIGINS = [f"https://{host}" for host in ALLOWED_HOSTS]

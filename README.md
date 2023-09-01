@@ -46,14 +46,14 @@ Or you can also use the `docker-compose.yml` file at the root of this repo. You 
 | `GUNICORN_TIMEOUT`  |  Gunicorn's `--timeout` argument _(Default: 30)_
 | `TPGAL_USER`  |  User to login to the TPGal API _(Required)_
 | `TPGAL_PASSWORD`  |  Password to login to the TPGal API _(Required)_
-| `EMAIL_HOST`  |  Smtp server host _(Required)_
+| `EMAIL_HOST`  |  Smtp server host  _(Default: "localhost")_
 | `EMAIL_USE_TLS`  |  _(Default: False)_
 | `EMAIL_USE_SSL`  |  _(Default: False)_
 | `EMAIL_PORT`  |  _(Default: 25)_
 | `EMAIL_HOST_USER`  |   _(Default: "")_
 | `EMAIL_HOST_PASSWORD`  |   _(Default: "")_
-| `DEFAULT_FROM_EMAIL`  |  Email address used when sending _(Required)_
-| `EMAIL_BASE_URL`  |  Used for the images and urls in the emails _(Required)_
+| `DEFAULT_FROM_EMAIL`  |  Email address used when sending  _(Default: "webmaster@localhost")_
+| `EMAIL_BASE_URL`  |  Used for the images and urls in the emails  _(Default: "http://127.0.0.1:8000")_
 
 _**Note🗒️:**_ Booleans are only true when their value is the string "true" (not case sensitive)
 
