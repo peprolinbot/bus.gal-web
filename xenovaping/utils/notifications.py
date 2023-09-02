@@ -12,7 +12,7 @@ def notify_email(email, number, pending):
     html_body = render_to_string("xenovaping/email/cashback_notification.html", {
                                  'base_url': settings.EMAIL_BASE_URL, 'pending': pending, 'number': number})
 
-    send_mail(subject="Cashback avaliable",
+    send_mail(subject="Refund avaliable",
               message=f"Hi there, you have a pending cashback of {pending}€ on your Xente Nova card with number {number}. You can go to your nearest ABANCA ATM to claim them.\nThis project is not endorsed by, directly affiliated with, maintained by, sponsored by or in any way officially related with la Xunta de Galicia, the bus operators or any of the companies involved in the bus.gal website and/or the app.",
               from_email=None,
               recipient_list=[email],
