@@ -16,7 +16,7 @@ def notify_email(email, number, pending):
               message=f"Hi there, you have a pending cashback of {pending}€ on your Xente Nova card with number {number}. You can go to your nearest ABANCA ATM to claim them.\nThis project is not endorsed by, directly affiliated with, maintained by, sponsored by or in any way officially related with la Xunta de Galicia, the bus operators or any of the companies involved in the bus.gal website and/or the app.",
               from_email=None,
               recipient_list=[email],
-              fail_silently=False,
+              fail_silently=True,
               html_message=html_body)
 
 
