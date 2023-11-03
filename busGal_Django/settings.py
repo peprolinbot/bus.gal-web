@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_bootstrap5',
-    'mjml'
+    'mjml',
+    'admin_extra_buttons'
 ]
 
 MIDDLEWARE = [
