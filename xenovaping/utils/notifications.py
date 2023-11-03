@@ -25,7 +25,7 @@ def run_checks():
     try:
         cards_summary = account.get_cards()
     except TPGalWSAppException as e:
-        if e.app_error.code == 87: # 087: User has no cards
+        if e.app_error.code == '087':  # 087: User has no cards
             return
         raise e
     for api_card in cards_summary:
