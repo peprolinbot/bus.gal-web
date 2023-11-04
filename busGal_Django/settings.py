@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_bootstrap5',
     'mjml',
-    'admin_extra_buttons'
+    'admin_extra_buttons',
+    'django_q'
 ]
 
 MIDDLEWARE = [
@@ -160,3 +161,12 @@ IS_DOCKER_BUILD = os.environ.get('IS_DOCKER_BUILD', "false").lower() == "true"
 if not IS_DOCKER_BUILD:
     TPGAL_USER = os.environ["TPGAL_USER"]
     TPGAL_PASSWORD = os.environ["TPGAL_PASSWORD"]
+
+# Configuration of Django-Q Q cluster
+# https://django-q.readthedocs.io/en/latest/configure.html
+Q_CLUSTER = {
+    "name": "default",
+    "orm": "default",
+    "timeout": 120,
+    "retry": 130
+}
