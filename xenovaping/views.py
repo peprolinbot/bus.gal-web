@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib import messages
 
@@ -8,8 +7,10 @@ from .utils.account import account
 
 from busGal_api.exceptions import TPGalWSAppException
 
+
 def index(request):
     return render(request, 'xenovaping/index.html')
+
 
 def add_card(request):
     if request.method == 'POST':

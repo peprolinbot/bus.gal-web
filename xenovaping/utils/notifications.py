@@ -25,14 +25,19 @@ def run_checks():
     try:
         cards_summary = account.get_cards()
     except TPGalWSAppException as e:
-        if e.app_error.code == 87: # 087: User has no cards
-            return
+        if e.app_error.code == '087':  # 087: User has no cards
+            return []
         raise e
+
+    output = []
     for api_card in cards_summary:
         db_card = Card.objects.get(number=api_card.number)
 
         if api_card.pending > db_card.last_pending:
             notify_email(db_card.owner.email, db_card.number, api_card.pending)
+            output.append(db_card)
 
         db_card.last_pending = api_card.pending
         db_card.save()
+
+    return output
