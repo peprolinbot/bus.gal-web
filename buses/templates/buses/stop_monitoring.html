@@ -1,0 +1,56 @@
+{% extends 'main/base.html' %}
+{% block content %}
+{% if expeditions %}
+<div class="row mb-3 mt-2">
+    <h1 class="text-center">Buses from <b>{{ stop.name }}</b> 🗓️ {{ date|date:'d/m/Y 🕙 H:i' }}</h1>
+</div>
+<div class="row mb-3">
+    <table class="table table-striped">
+        <tr>
+            <th scope="col">Line</th>
+            <th scope="col">Plate</th>
+            <th scope="col">Arrival</th>
+            <th scope="col">Distance</th>
+            <!-- <th scope="col">Time left</th> -->
+        </tr>
+        {% for expedition in expeditions %}
+        <tr>
+            <td><a href="{{ expedition.bus_dot_gal_url }}">{{ expedition.line.name }}</a></td>
+            <td>{{ expedition.real_time_data.VehicleRef|default:"N/A" }}</td>
+            <td>{% if expedition.real_time_data %}
+                {% if expedition.real_time_data.MonitoredCall.DistanceFromStop == "0 m" %}
+                <b>At stop</b>
+                {% else %}
+                {{ expedition.real_time_data.MonitoredCall.ExpectedArrivalTime|slice:'-14:-6' }}
+                {% endif %}
+                {% else %}
+                {{ expedition.passing_time|date:'H:i:s' }}
+                {% endif %}
+            </td>
+            <td>{{ expedition.real_time_data.MonitoredCall.DistanceFromStop|default:"N/A" }}</td>
+            <!-- <td></td> -->
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+        const refreshInterval = 30000; // 5 seconds
+
+        // Function to reload the page
+        function autoReload() {
+            setTimeout(function () {
+                location.reload(); // Reload the current page
+            }, refreshInterval);
+        }
+
+        // Call the autoReload function when the page loads
+        autoReload();
+    });
+</script>
+{% else %}
+<div class="row mb-3 mt-2">
+    <h1 class="text-center"><b>No expeditions are available</b> 😭</h1>
+</div>
+{% endif %}
+{% endblock %}

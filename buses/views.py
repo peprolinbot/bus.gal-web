@@ -7,7 +7,7 @@ from .templatetags.buses_extras import form_stop_string as _create_form_stop_str
 from .utils.stops_cache import stops_cache
 
 from busGal_api import transport as busapi
-from datetime import date
+from datetime import date, datetime
 import time
 
 
@@ -48,6 +48,17 @@ def index(request):
             form.fields['destination'].initial = destination
 
     return render(request, 'buses/index.html', {'form': form})
+
+
+def monitor_stop(request, stop_id, real_time=True):
+    trip_date = datetime.now()
+
+    expeditions = busapi.expeditions.get_expeditions_from_stop(
+        stop_id, datetime.now(), real_time=True)
+
+    return render(request, 'buses/stop_monitoring.html', {'stop': expeditions[0].passing_stop,
+                                                          'date': trip_date,
+                                                          'expeditions': expeditions})
 
 
 def autocomplete(request):
