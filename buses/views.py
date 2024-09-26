@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 
-from .forms import SearchForm
+from .forms import SearchForm, StopSearchForm
 from .templatetags.buses_extras import form_stop_string as _create_form_stop_string
 
 from .utils.stops_cache import stops_cache
@@ -50,7 +50,7 @@ def index(request):
     return render(request, 'buses/index.html', {'form': form})
 
 
-def monitor_stop(request, stop_id, real_time=True):
+def monitor_stop(request, stop_id):
     trip_date = datetime.now()
 
     expeditions = busapi.expeditions.get_expeditions_from_stop(
@@ -59,6 +59,24 @@ def monitor_stop(request, stop_id, real_time=True):
     return render(request, 'buses/stop_monitoring.html', {'stop': expeditions[0].passing_stop,
                                                           'date': trip_date,
                                                           'expeditions': expeditions})
+
+
+def monitor_stop_form(request):
+    if request.method == 'POST':
+        form = StopSearchForm(request.POST)
+
+        # To make the form valid
+        stop_id = request.POST.get("stop")
+        form.fields['stop'].choices = [(stop_id, stop_id)]
+
+        if form.is_valid():
+            stop = _parse_form_stop_string(form.cleaned_data['stop'])
+
+            return redirect('buses:monitor_stop', stop.id)
+    else:
+        form = StopSearchForm()
+
+    return render(request, 'buses/index.html', {'form': form})
 
 
 def autocomplete(request):
