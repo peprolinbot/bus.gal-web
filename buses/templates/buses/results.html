@@ -27,7 +27,8 @@
             <td>{{ expedition.destination|stop_button }}
             </td>
             <td>{{ expedition.destination.time|date:'H:i' }}</td>
-            <td><b>{{ expedition.code }}</b> - <a href="{{ expedition.bus_dot_gal_url }}">{{ expedition.line.name }}</a></td>
+            <td><b>{{ expedition.code }}</b> - <a href="{{ expedition.bus_dot_gal_url }}">{{ expedition.line.name }}</a>
+            </td>
         </tr>
         {% endfor %}
     </table>

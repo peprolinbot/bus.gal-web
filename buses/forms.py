@@ -4,7 +4,12 @@ import busGal_api as busapi
 import datetime
 
 
-class SearchForm(forms.Form):
+class StopSearchForm(forms.Form):
+    stop = forms.ChoiceField(required=True, label='Stop', widget=forms.Select(
+        attrs={'class': 'select2', 'data-placeholder': 'Start typing to search'}))
+
+
+class TripSearchForm(forms.Form):
     origin = forms.ChoiceField(required=True, label='Origin', widget=forms.Select(
         attrs={'class': 'select2', 'data-placeholder': 'Start typing to search'}))
 

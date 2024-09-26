@@ -73,8 +73,8 @@
     <footer class="footer text-center">
         <hr class="mx-5">
         <p>Made with ❤️ by <b>peprolinbot</b> - <a href="https://codeberg.org/peprolinbot/bus.gal-web"
-                target="_blank">Source code</a> - <a href="https://paypal.me/peprolinbot"
-                target="_blank">Donate💸</a></p>
+                target="_blank">Source code</a> - <a href="https://paypal.me/peprolinbot" target="_blank">Donate💸</a>
+        </p>
     </footer>
 
     <!-- Enable popovers -->
@@ -83,6 +83,12 @@
             const popoverTriggerList = $('[data-bs-toggle="popover"]').toArray()
             const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
         });
+
+        // Hide popovers when you open another one
+        $('[data-bs-toggle="popover"]').click(function () {
+            $('[data-bs-toggle="popover"]').not(this).popover('hide'); //all but this
+        });
+
     </script>
 </body>
 
