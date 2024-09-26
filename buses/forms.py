@@ -9,7 +9,7 @@ class StopSearchForm(forms.Form):
         attrs={'class': 'select2', 'data-placeholder': 'Start typing to search'}))
 
 
-class SearchForm(forms.Form):
+class TripSearchForm(forms.Form):
     origin = forms.ChoiceField(required=True, label='Origin', widget=forms.Select(
         attrs={'class': 'select2', 'data-placeholder': 'Start typing to search'}))
 

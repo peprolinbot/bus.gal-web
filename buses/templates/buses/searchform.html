@@ -3,11 +3,12 @@
 {% load static %}
 
 {% block css %}
-<link href="{% static 'buses/css/index.css' %}" rel="stylesheet">
+<link href="{% static 'buses/css/searchform.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 <div class="container justify-content-center my-5">
+    <h1 class="text-center">{{ form_header }}</h1>
     <form action="" method="post">
         {% csrf_token %}
         {% bootstrap_form form %}

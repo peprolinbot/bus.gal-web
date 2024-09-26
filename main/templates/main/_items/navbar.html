@@ -42,13 +42,21 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
 
-                <li class="nav-item">
-                    <a href="{% url 'buses:index'%}" class="nav-link">Buses</a>
-                </li>
+                <div class="dropdown nav-item">
+                    <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                        aria-haspopup="true">Buses
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item nav-link" href="{% url 'buses:trip_search'%}">Trip</a></li>
+                        <li><a class="dropdown-item nav-link" href="{% url 'buses:monitor_stop_form'%}">Monitor stop</a>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
 
                 <div class="dropdown nav-item">
-                    <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false" aria-haspopup="true">Xenovaping
+                    <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                        aria-haspopup="true">Xenovaping
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item nav-link" href="{% url 'xenovaping:index'%}">Home</a></li>

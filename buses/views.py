@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 
-from .forms import SearchForm, StopSearchForm
+from .forms import TripSearchForm, StopSearchForm
 from .templatetags.buses_extras import form_stop_string as _create_form_stop_string
 
 from .utils.stops_cache import stops_cache
@@ -15,9 +15,9 @@ def _parse_form_stop_string(string: str) -> busapi.stops.Stop:
     return busapi.stops.Stop(*string.split("/", 2))
 
 
-def index(request):
+def trip_search(request):
     if request.method == 'POST':
-        form = SearchForm(request.POST)
+        form = TripSearchForm(request.POST)
 
         # To make the form valid
         origin_id = request.POST.get("origin")
@@ -34,7 +34,7 @@ def index(request):
 
             return redirect('buses:results', origin.id, origin.type, origin.name, destination.id, destination.type, destination.name, timestamp)
     else:
-        form = SearchForm()
+        form = TripSearchForm()
 
         origin = request.GET.get("origin")  # form_stop_string
         destination = request.GET.get("destination")  # form_stop_string
@@ -47,7 +47,7 @@ def index(request):
                 (destination, _parse_form_stop_string(destination).name)]
             form.fields['destination'].initial = destination
 
-    return render(request, 'buses/index.html', {'form': form})
+    return render(request, 'buses/searchform.html', {'form_header': 'Prepare your trip', 'form': form})
 
 
 def monitor_stop(request, stop_id):
@@ -76,7 +76,7 @@ def monitor_stop_form(request):
     else:
         form = StopSearchForm()
 
-    return render(request, 'buses/index.html', {'form': form})
+    return render(request, 'buses/searchform.html', {'form_header': 'Search a stop to see real-time information', 'form': form})
 
 
 def autocomplete(request):
