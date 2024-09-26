@@ -11,7 +11,7 @@
             <th scope="col">Plate</th>
             <th scope="col">Arrival</th>
             <th scope="col">Distance</th>
-            <!-- <th scope="col">Time left</th> -->
+            <th scope="col">Delay</th>
         </tr>
         {% for expedition in expeditions %}
         <tr>
@@ -28,7 +28,7 @@
                 {% endif %}
             </td>
             <td>{{ expedition.real_time_data.MonitoredCall.DistanceFromStop|default:"N/A" }}</td>
-            <!-- <td></td> -->
+            <td>{{ expedition.real_time_data.Delay|default:"N/A" }}</td>
         </tr>
         {% endfor %}
     </table>
