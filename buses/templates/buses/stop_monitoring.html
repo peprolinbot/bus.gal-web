@@ -5,7 +5,7 @@
     <h1 class="text-center">Buses from <b>{{ stop.name }}</b> 🗓️ {{ date|date:'d/m/Y 🕙 H:i' }}</h1>
 </div>
 <div class="row mb-3">
-    <table class="table table-striped">
+    <table class="table table-hover">
         <tr>
             <th scope="col">Line</th>
             <th scope="col">Plate</th>
@@ -14,7 +14,10 @@
             <th scope="col">Delay</th>
         </tr>
         {% for expedition in expeditions %}
-        <tr>
+        <tr class="{% if not expedition.real_time_data %} table-secondary
+        {% elif expedition.real_time_data.MonitoredCall.DistanceFromStop == '0 m' %} table-primary 
+        {% elif expedition.real_time_data.Delay|slice:':1' == '-' %} table-warning 
+        {% elif expedition.real_time_data.Delay|slice:':3' != 'PT0' %} table-danger {% endif %}">
             <td><a href="{{ expedition.bus_dot_gal_url }}">{{ expedition.line.name }}</a></td>
             <td>{{ expedition.real_time_data.VehicleRef|default:"N/A" }}</td>
             <td>{% if expedition.real_time_data %}
