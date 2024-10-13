@@ -5,7 +5,16 @@
     <h1 class="text-center">Buses from <b>{{ stop.name }}</b> 🗓️ {{ date|date:'d/m/Y 🕙 H:i' }}</h1>
 </div>
 <div class="row mb-3">
-    <table class="table table-hover">
+    <h5 class="text-center">
+        <span class="badge bg-secondary">Not in realtime</span>
+        <span class="badge bg-primary">At stop</span>
+        <span class="badge bg-danger">Behind schedule</span>
+        <span class="badge bg-warning text-dark">Ahead of schedule</span>
+        <span class="badge bg-light text-dark">On schedule</span>
+    </h5>
+</div>
+<div class="row mb-3">
+    <table class="table table-light table-hover">
         <tr>
             <th scope="col">Line</th>
             <th scope="col">Plate</th>
