@@ -53,10 +53,10 @@ def trip_search(request):
 def monitor_stop(request, stop_id):
     trip_date = datetime.now()
 
-    expeditions = busapi.expeditions.get_expeditions_from_stop(
+    queried_stop, expeditions = busapi.expeditions.get_expeditions_from_stop(
         stop_id, datetime.now(), real_time=True)
 
-    return render(request, 'buses/stop_monitoring.html', {'stop': expeditions[0].passing_stop,
+    return render(request, 'buses/stop_monitoring.html', {'stop': expeditions[0].passing_stop if expeditions else queried_stop,
                                                           'date': trip_date,
                                                           'expeditions': expeditions})
 
